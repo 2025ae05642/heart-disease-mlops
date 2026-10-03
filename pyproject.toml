@@ -12,7 +12,7 @@ requires-python = ">=3.11"
 where = ["src"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["test"]
 pythonpath = ["src"]
 addopts = "-ra"
 filterwarnings = ["ignore::DeprecationWarning", "ignore::FutureWarning", "ignore::UserWarning"]
@@ -20,7 +20,7 @@ filterwarnings = ["ignore::DeprecationWarning", "ignore::FutureWarning", "ignore
 [tool.ruff]
 line-length = 110
 target-version = "py311"
-src = ["src", "tests", "scripts"]
+src = ["src", "test", "scripts"]
 extend-exclude = ["notebooks"]
 
 [tool.ruff.lint]
@@ -28,4 +28,4 @@ select = ["E", "F", "W", "I", "B", "UP", "BLE"]
 ignore = ["E501"]
 
 [tool.ruff.lint.per-file-ignores]
-"tests/*" = ["B"]
+"test/*" = ["B"]

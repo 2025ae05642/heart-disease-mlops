@@ -17,7 +17,7 @@ Cleveland subset) and serves the model as a monitored, containerised REST API on
 | Models | Logistic Regression, Random Forest, Gradient Boosting; `GridSearchCV`, stratified 5-fold CV, 5 metrics | `src/cardiorisk/train.py` |
 | Tracking | MLflow: parent run → per-family run → one nested run per grid candidate (56 runs per training: 1 parent + 3 family + 52 grid candidates); params, metrics, plots, CSVs, models, registry | `mlflow.db` (local), CI artifact |
 | Packaging | `model.joblib` + MLflow model (skops, explicit trusted types) + `metadata.json`; pinned `requirements*.txt` | `models/` |
-| Tests | 26 pytest tests: data cleaning, features, models, API contract, metrics, logging | `tests/` |
+| Tests | 26 pytest tests: data cleaning, features, models, API contract, metrics, logging | `test/` |
 | CI/CD | GitHub Actions: lint → test → train (+quality gate) → Docker build + smoke test → deploy to kind + verify | `.github/workflows/ci.yml` |
 | Serving | FastAPI `/predict`, `/predict/batch`, `/health`, `/ready`, `/model-info`, `/metrics` | `src/cardiorisk/api/` |
 | Container | `python:3.12-slim`, runtime-only deps, non-root, healthcheck | `Dockerfile` |
@@ -92,6 +92,8 @@ kubectl -n cardiorisk rollout status deploy/cardiorisk-api
 # access via LoadBalancer
 minikube tunnel                          # separate terminal
 kubectl -n cardiorisk get svc cardiorisk-api   # EXTERNAL-IP
+# or, without sudo (keeps a local tunnel open in that terminal):
+minikube service cardiorisk-api -n cardiorisk --url
 # or via Ingress
 curl -H 'Host: cardiorisk.local' http://$(minikube ip)/health
 # dashboards
@@ -126,7 +128,7 @@ Local monitoring without Kubernetes: `docker compose up --build` → API :8000, 
 ├── src/cardiorisk/        package: config, data, features, train, evaluate, eda, predict, api/
 ├── scripts/               download_data, run_eda, build_notebooks, draw_architecture, smoke_test.sh
 ├── notebooks/             01_eda, 02_training, 03_inference (executed)
-├── tests/                 pytest suite
+├── test/                  pytest suite
 ├── data/raw, data/processed
 ├── models/                model.joblib, metadata.json, mlflow_model/
 ├── reports/figures/       EDA + model comparison figures
