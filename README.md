@@ -1,7 +1,7 @@
 # CardioRisk — Heart-Disease Risk Prediction with an End-to-End MLOps Pipeline
 
 **Course:** Machine Learning Operations (AIMLCZG523) — Assignment 1 · **Student:** Gaurisha Mathur (2025ae05642)
-**Repository:** https://github.com/flow-shiftt/heart-disease-mlops
+**Repository:** https://github.com/2025ae05642/heart-disease-mlops
 **Report:** [`docs/MLOps_Assignment1_Report.docx`](docs/MLOps_Assignment1_Report.docx) (PDF copy alongside) · **Evidence:** [`screenshots/`](screenshots), [`docs/logs/`](docs/logs)
 
 CardioRisk predicts the presence of heart disease from 13 clinical measurements (UCI Heart Disease,
@@ -32,7 +32,7 @@ Requires Python 3.11+ (3.12 used in CI and Docker), Docker, and for deployment `
 (or Docker Desktop Kubernetes).
 
 ```bash
-git clone https://github.com/flow-shiftt/heart-disease-mlops.git
+git clone https://github.com/2025ae05642/heart-disease-mlops.git
 cd heart-disease-mlops
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements-dev.txt && pip install -e . --no-deps
