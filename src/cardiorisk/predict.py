@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import os  # deliberately unused: demonstrates the lint gate
 import json
 import os
 from dataclasses import dataclass
